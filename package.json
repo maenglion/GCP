@@ -1,0 +1,46 @@
+{
+  "name": "minhoo-cbt-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Minhoo's CBT application, handling OpenAI and Google STT API calls.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "openai",
+    "google-cloud-speech",
+    "heroku",
+    "railway"
+  ],
+  "author": "maenglion",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/speech": "^7.1.0",
+    "@google-cloud/text-to-speech": "^6.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.4.0",
+    "google-auth-library": "^10.1.0",
+    "node-fetch": "^3.3.2",
+    "mysql2": "^3.x.x"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maenglion/google-tts-new-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maenglion/google-tts-new-server/issues"
+  },
+  "homepage": "https://github.com/maenglion/google-tts-new-server#readme"
+}
