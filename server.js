@@ -72,6 +72,7 @@
     // ⭐⭐ 데이터베이스 연결 풀 설정 ⭐⭐
     let dbPool; // 전역적으로 사용하기 위해 선언
 
+   
     async function connectToDatabase() {
       try {
         dbPool = mysql.createPool({
@@ -213,17 +214,7 @@
       }
     });
 
-    // 서버 시작 시 DB 연결
-   app.listen(port, async () => {
-  console.log(`✅ 서버 실행 중: http://localhost:${port}`);
-  try {
-    await connectToDatabase(); // 비동기 함수는 try/catch로 감싸기
-    console.log("✅ DB 연결 완료");
-  } catch (error) {
-    console.error("❌ DB 연결 실패:", error.message);
-    process.exit(1); // 실패 시 서버 강제 종료 (Cloud Run용)
-  }
-});
+
 
     // ✅ OpenAI GPT Vision 프록시 라우트
 app.post('/api/gpt-vision', async (req, res) => {
@@ -278,3 +269,17 @@ app.post('/api/gpt-vision', async (req, res) => {
     res.status(500).json({ error: '서버 내부 오류', detail: error.message });
   }
 });
+       // 서버 시작 시 DB 연결
+ async function startServer() {
+  try {
+    await connectToDatabase(); // DB 먼저 연결 시도
+    app.listen(port, () => {
+      console.log(`✅ 서버 실행 중: http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.error("❌ DB 연결 실패:", error.message);
+    process.exit(1); // 실패 시 컨테이너 강제 종료
+  }
+}
+
+startServer();
