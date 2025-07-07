@@ -87,7 +87,8 @@
       } catch (error) {
         console.error('❌ MySQL 데이터베이스 연결 풀 생성 실패:', error);
         // 서버가 DB 연결 없이는 동작하지 않아야 한다면 여기서 process.exit(1) 등을 고려
-      }
+         throw err;
+   }
     }
 
 
