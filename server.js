@@ -47,6 +47,7 @@
       credentials: true
     }));
 
+
     app.options('*', cors());
 
     // ✅ Firebase Admin을 환경변수 기반으로 초기화
@@ -92,7 +93,10 @@
 
     app.use(express.json({ limit: '10mb' }));
     app.use(express.raw({ type: 'audio/wav', limit: '10mb' }));
-    app.use("/api/gpt-vision", gptVisionRouter);
+   
+    app.use("/api/gpt-vision", (req, res) => {
+  res.status(501).json({ message: "해당 기능은 곧 지원 예정입니다." });
+});
 
     async function verifyFirebaseToken(req, res, next) {
       const authHeader = req.headers.authorization;
